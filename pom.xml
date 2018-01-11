@@ -1,19 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
-    <parent>
-        <artifactId>graylog-project</artifactId>
-        <groupId>org.graylog</groupId>
-        <version>2.2.0-SNAPSHOT</version>
-    </parent>
     <prerequisites>
-        <maven>3.1</maven>
+        <maven>3.0</maven>
     </prerequisites>
 
     <groupId>org.graylog.plugins.dnstap</groupId>
     <artifactId>graylog-plugin-dnstap</artifactId>
     <version>0.0.2</version>
     <packaging>jar</packaging>
+
+    <parent>
+        <groupId>org.graylog.plugins</groupId>
+        <artifactId>graylog-plugin-web-parent</artifactId>
+        <version>3.0.0-SNAPSHOT</version>
+        <relativePath>../graylog2-server/graylog-plugin-parent/graylog-plugin-web-parent</relativePath>
+    </parent>
 
     <name>${project.artifactId}</name>
     <description>Graylog ${project.artifactId} plugin.</description>
@@ -37,7 +39,7 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
-        <graylog.version>2.1.1</graylog.version>
+        <graylog.version>2.4.0</graylog.version>
         <graylog.plugin-dir>/usr/share/graylog-server/plugin</graylog.plugin-dir>
         <protobuf.version>3.0.2</protobuf.version>
         <dnsjava.version>2.1.7</dnsjava.version>
@@ -50,6 +52,12 @@
             <version>${graylog.version}</version>
             <scope>provided</scope>
         </dependency>
+	<dependency>
+	    <groupId>com.google.auto.value</groupId>
+	    <artifactId>auto-value</artifactId>
+	    <version>1.0-rc1</version>
+	    <scope>provided</scope>
+	</dependency>
         <dependency>
             <groupId>com.google.protobuf</groupId>
             <artifactId>protobuf-java</artifactId>
@@ -74,6 +82,17 @@
                 <artifactId>maven-assembly-plugin</artifactId>
                 <configuration>
                     <skipAssembly>true</skipAssembly>
+                </configuration>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.1</version>
+                <configuration>
+                    <annotationProcessors>
+                        <annotationProcessor>com.google.auto.value.processor.AutoValueProcessor</annotationProcessor>
+                    </annotationProcessors>
                 </configuration>
             </plugin>
 

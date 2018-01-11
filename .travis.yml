@@ -1,0 +1,29 @@
+sudo: false
+dist: trusty
+language: java
+jdk:
+- oraclejdk8
+addons:
+  apt:
+    packages:
+    - rpm
+before_deploy:
+- mvn jdeb:jdeb && export RELEASE_DEB_FILE=$(ls target/*.deb)
+- mvn rpm:rpm && export RELEASE_RPM_FILE=$(find target/ -name '*.rpm' | tail -1)
+- rm -f target/original-*.jar
+- export RELEASE_PKG_FILE=$(ls target/*.jar)
+- echo "Deploying release to GitHub releases"
+deploy:
+  provider: releases
+  api_key:
+    secure: AOzjJ52qetma8bL2f0aIliZub4VOCT76lN/EGrS3nI5fVmm9e57WXrivKIVPywHw5JwQkt4Wgnui9nMwZ6x4h4dVrjmaV4KBQ5bIp8BEUB8ipmM6PHzZ2aB4+tIZOn3nA/IBJanLQEHxXUvZhCKrJYFmlckuSRD+hhsrkEt9I0pAALtP3/iKEADmsQRu54ZbKG78bjBh07O7CERahbHCxfRDiHmPiGdduch8diaKWyXFTyC3arguFL0hVp7cZzXOEW/9iOz+q+skV0PFYrqfOtlfNlJNdGgQUKwSaOaOTgfoauGQDLYBxymV9W0vA0TkjwvLyVO20dXKtqOSW0mJP2t3Vb4NT8w1OQs4/mmFgSWlgmT609w4xXAKbY9dIDpGo9ypKHKl7/G+kjiXGFvXFPBoJMAbl5loDEV1xgHuGCu37NEZ3o4bpvDHuSWd12herIGRv8ZC7mswyrwm2zFuGFQoNXst4RSnc1A2VkdOYqhP3trPJDKEG3aB5GAzWfH+N5edNrJc11MMPAy4U4yJMpCCejSMKtFtNlEFDpc1WNqn1gzoT8B/DKgoPDGwnnVXna9nI6H4V8Dl5+1G02f/iHfdcH2BqCuwlCZSf+Fruj6gN+L5P/L072k6+9oyxeLLfKe8fCDsasvTQvwlb5+9aB/qxMCAHn/vICJkZ0sz1nE=
+  file_glob: true
+  file:
+    - "**/target/*.jar"
+    - "**/target/*.deb"
+    - "**/target/**/*.rpm"
+  skip_cleanup: true
+  on:
+    repo: malaiwah/graylog-plugin-dnstap
+    tags: true
+    jdk: oraclejdk8
