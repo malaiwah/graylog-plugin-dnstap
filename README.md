@@ -1,4 +1,5 @@
 # Dnstap Plugin for Graylog
+[![Build Status](https://travis-ci.org/malaiwah/graylog-plugin-dnstap.svg?branch=master)](https://travis-ci.org/malaiwah/graylog-plugin-dnstap)
 
 **Required Graylog version:** 2.0 and later
 
