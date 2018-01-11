@@ -7,7 +7,7 @@
 
     <groupId>org.graylog.plugins.dnstap</groupId>
     <artifactId>graylog-plugin-dnstap</artifactId>
-    <version>0.0.2</version>
+    <version>0.0.3</version>
     <packaging>jar</packaging>
 
     <name>${project.artifactId}</name>

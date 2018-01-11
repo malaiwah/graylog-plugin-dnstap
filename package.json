@@ -1,6 +1,6 @@
 {
   "name": "graylog-plugin-dnstap",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Graylog plugins to provide an input for the Dnstap protocol",
   "repository": {
     "type": "git",
