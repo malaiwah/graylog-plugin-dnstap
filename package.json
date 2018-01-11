@@ -1,0 +1,21 @@
+{
+  "name": "graylog-plugin-dnstap",
+  "version": "0.0.2",
+  "description": "Graylog plugins to provide an input for the Dnstap protocol",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/sega-yarkin/graylog-plugin-dnstap"
+  },
+  "scripts": {
+    "build": "echo 'Dummy build script for graylog-plugin-dnstap'"
+  },
+  "keywords": [
+    "graylog"
+  ],
+  "author": "Graylog, Inc. <hello@graylog.com>",
+  "license": "MIT",
+  "dependencies": {},
+  "devDependencies": {
+    "graylog-web-plugin": "file:../graylog2-server/graylog2-web-interface/packages/graylog-web-plugin"
+  }
+}
